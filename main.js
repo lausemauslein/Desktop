@@ -1,70 +1,131 @@
-dragElement(document.getElementById("windowy"));
 
+
+dragElement(document.getElementById("window"));
+dragElement(document.getElementById("notes"));
+
+var welcomeScreen = document.querySelector("#window");
+var notesScreen = document.querySelector("#notes");
+var topBar = document.querySelector("#top");
+var biggestIndex = 1;
+
+/* Setup Window Tap Handling & Closable triggers */
+addWindowTapHandling(welcomeScreen);
+addWindowTapHandling(notesScreen);
+
+makeClosable("close", welcomeScreen);
+makeClosable("notesclose", notesScreen);
+
+/* Opening and Closing Triggers */
+var screenyOpen = document.querySelector("#open");
+if (screenyOpen) {
+  screenyOpen.addEventListener("click", function() {
+    openWindow(welcomeScreen);
+  });
+}
+
+/* Drag Element */
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "drag")) {
-    /* if present, the header is where you move the DIV from:*/
-    document.getElementById(elmnt.id + "drag").onmousedown = dragMouseDown;
+  var header = elmnt.querySelector(".windowheader");
+  
+  if (header) {
+    header.onmousedown = dragMouseDown;
   } else {
-    /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
   }
 
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
-    // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
+    handleWindowTap(elmnt);
   }
 
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
-    // calculate the new cursor position:
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
-    // set the element's new position:
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
   }
 
   function closeDragElement() {
-    /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
   }
 }
 
-var screeny = document.querySelectorAll("#windowy")
-function closeWindow(element){
-  element.style.dislplay = "none"
-}
-function openWindow(element){
-  element.style.dislplay = "flex"
+/* Window Open/Close Functions */
+function closeWindow(element) {
+  element.style.display = "none";
 }
 
-var screenyClose = document.querySelectorAll("#close")
-var screenyOpen = document.querySelectorAll("#open")
+function openWindow(element) {
+  element.style.display = "flex";
+  biggestIndex++;
+  element.style.zIndex = biggestIndex;
+  if (topBar) topBar.style.zIndex = biggestIndex + 1;
+}
 
-screenyClose.addEventListener("click", function(){
-  closeWindow(screeny)
-})
+function makeClosable(closeButtonId, targetScreen) {
+  var closeBtn = document.querySelector("#" + closeButtonId);
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function() {
+      closeWindow(targetScreen);
+    });
+  }
+}
 
-screenyOpen.addEventListener("click", function(){
-  openWindow(screeny)
-})
+function addWindowTapHandling(element) {
+  element.addEventListener("mousedown", function() {
+    handleWindowTap(element);
+  });
+}
 
-/*Time*/
+function handleWindowTap(element) {
+  biggestIndex++;
+  element.style.zIndex = biggestIndex;
+  if (topBar) topBar.style.zIndex = biggestIndex + 1;
+  if (selectedIcon) deselectIcon(selectedIcon);
+}
+
+/* Time */
 function updateTime(){
-  var currentTime = new Date().toLocaleDateString();
+  var currentTime = new Date().toLocaleString();
   var timeText = document.querySelector("#Right");
-  timeText.innerHTML = currentTime;
+  if (timeText) {
+    timeText.innerHTML = currentTime;
+  }
+}
+setInterval(updateTime, 1000);
+
+/* App Icon Selection*/
+var selectedIcon = undefined;
+
+function selectIcon(element) {
+  element.classList.add("selected");
+  selectedIcon = element;
 }
 
-setInterval(updateTime, 1000);
+function deselectIcon(element) {
+  if (element) {
+    element.classList.remove("selected");
+  }
+  selectedIcon = undefined;
+}
+
+function handleIconTap(element) {
+  if (element.classList.contains("selected")) {
+    deselectIcon(element);
+    closeWindow(notesScreen);
+  } else {
+    selectIcon(element);
+    openWindow(notesScreen);
+  }
+}
