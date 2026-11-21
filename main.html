@@ -28,7 +28,6 @@
   <div class="window" id="window">
     <div class="windowheader" id="drag">
       <div class="closebutton" id="close">X</div>
-      <p class="headertext">Welcome</p>
     </div>
     <div class="window-content">
       <p>Learn to draggy</p>
@@ -38,12 +37,20 @@
   <!-- App Window -->
   <div class="window" id="notes" style="display: none;">
     <div class="windowheader" id="notesheader">
-      <div class="closebutton" id="notesclose"><img src="" alt="X"></div>
-      <p class="headertext">To-Do</p>
-      <div style="width: 16px; margin-right: 6px; height: 16px;"></div>
+      <div class="closebutton" id="notesclose">X</div>
     </div>
-    <div class="window-content">
-      <p>To-do's</p>
+
+    <div class="window-content To__do__List">
+      <h2>To-do's   &#128204 </h2>
+      <div class="row">
+        <input type="text" id="input_box" placeholder="Add your First To-Do!">
+        <button class="add_item" onclick="addTask()">add</button>
+      </div>
+      <ul id="list_containter">
+        <!--<li class="checked">Task 1</li>
+        <li>Task 2</li>
+        <li>Task 3</li>-->
+      </ul>
     </div>
   </div>
 
