@@ -123,9 +123,33 @@ function deselectIcon(element) {
 function handleIconTap(element) {
   if (element.classList.contains("selected")) {
     deselectIcon(element);
-    closeWindow(notesScreen);
   } else {
     selectIcon(element);
     openWindow(notesScreen);
   }
 }
+
+const inputBox = document.getElementById("input_box");
+const listContainter = document.getElementById("list_containter");
+
+function addTask(){
+  if(inputBox.value === ''){
+    alert("Please enter a task")
+  }else{
+    let li = document.createElement("li");
+    li.innerHTML = inputBox.value;
+    listContainter.appendChild(li);
+    let span = document.createElement("span");
+    span.innerHTML = "\u00d7";
+    li.appendChild(span);
+  }
+  inputBox.value - "";
+}
+
+listContainter.addEventListener("click", function(e){
+  if(e.target.tagName === "LI"){
+    e.target.classList.toggle("checked");
+  }else if(e.target.tagName === "SPAN"){
+    e.target.parentElement.remove();
+  }
+})
