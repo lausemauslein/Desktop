@@ -1,47 +1,111 @@
-#windowy{
-  position: absolute;
-  background-color: none;
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(5vh);
-  background-color: #fff;
-  align-items: center;
-}
-
-#drag{
-  cursor: grab;
-  width: 100%;
-  background-color: purple;
-  display: flex;
-  justify-content: space-between;
-}
-
-body{
-  background-image: url(Sky.jpg);
+body {
+  background-image: url('Sky.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  height: 100vh;
+  margin: 0px;
+  font-family: sans-serif;
+  overflow: hidden;
 }
 
-.header{
+.top-bar {
+  position: absolute;
+  width: 98%;
   display: flex;
-  justify-content: space-between;
-  background-color: rgba(135, 207, 235, 0.514);
   backdrop-filter: blur(10px);
-  color: black;
-  margin-bottom: 5vh;
-  padding: 0 3vh 0 3vh;
+  background-color: rgba(135, 207, 235, 0.514);
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh;
+  
 }
 
-#open, #close{
+/* Windows */
+
+.window {
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  position: absolute;
+  backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  overflow: hidden;
+  top: calc(50% - 90px); left: calc(50% - 180px)
+}
+
+.windowheader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: grab;
+  justify-content: space-around;
+  background-color: purple;
+  padding: 2vh;
+  margin: 0;
+}
+
+.windowheader:active {
+  cursor: grabbing;
+}
+
+.headertext {
+  margin: 0px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.closebutton {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background-color: red;
+  padding: 0.2vh;
+  color: white;
+  border-radius: 16px;
+  border: solid 1px rgba(0, 0, 0, 0.25);
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.window-content {
+  padding: 20px;
+  text-align: center;
+  background-color: #fff; 
+  width: 400px; 
+  height: 300px; 
+  padding: 16px;
+}
+
+/* App Icons */
+
+.desktop-apps {
+  padding-top: 64px;
+  padding-left: 16px;
+  position: absolute;
+}
+
+.app-icon {
+  text-align: center;
+  padding: 16px;
+  width: fit-content;
   cursor: pointer;
 }
 
-#close{
-  padding: 0 0 0 0.5vh;
-  margin: 0;
+.app-icon img {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.app-text{
+  margin: 0px; 
+  color: black;
 }
