@@ -3,24 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Greater Desktop</title>
+  <title>LausemausOS</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="header">
-    <p id="open">LausemausOS</p>
-    <p >Possibilites are endlesss</p>
-    <p id="Right"></p>
+  
+  <!-- Top Bar -->
+  <div class="top-bar" id="top">
+    <p id="open" class="headertext">LausemausOS</p>
+    <p class="headertext">Possibilities are endless</p>
+    <p id="Right" class="headertext"></p>
   </div>
 
-  <div id="windowy">
-    <div id="drag">
-      <p id="close">&#10005</p>
+  <!-- Desktop Apps / Icons -->
+  <div id="desktopApps" class="desktop-apps">
+    <div class="app-icon" onclick="handleIconTap(this)">
+      <img class="selected-img" src="Notes.png" alt="To-do">
+      <p class="app-text">To-do</p>
     </div>
-     <p>Learn to draggy</p>
-  </div>  
-  <script src="main.js" defer></script>
+  </div>
 
+  <!-- Welcome Window -->
+  <div class="window" id="window">
+    <div class="windowheader" id="drag">
+      <div class="closebutton" id="close">X</div>
+      <p class="headertext">Welcome</p>
+    </div>
+    <div class="window-content">
+      <p>Learn to draggy</p>
+    </div>
+  </div>  
+
+  <!-- App Window -->
+  <div class="window" id="notes" style="display: none;">
+    <div class="windowheader" id="notesheader">
+      <div class="closebutton" id="notesclose"><img src="" alt="X"></div>
+      <p class="headertext">To-Do</p>
+      <div style="width: 16px; margin-right: 6px; height: 16px;"></div>
+    </div>
+    <div class="window-content">
+      <p>To-do's</p>
+    </div>
+  </div>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
