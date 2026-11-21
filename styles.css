@@ -45,11 +45,11 @@ body {
   backdrop-filter: blur(4px);
   background-color: var(--light_white);
   box-shadow: 0 10px 25px rgba(0, 14, 75, 0.425);
-  overflow: hidden;
-  top: calc(50% - 90px); left: calc(50% - 180px);
+  top: calc(50% - 90px); 
+  left: calc(50% - 180px);
   width: fit-content;
   height: auto;
-  overflow:visible;
+  overflow: hidden;
 }
 
 .windowheader {
@@ -58,9 +58,11 @@ body {
   align-items: center;
   cursor: grab;
   justify-content: space-between;
-  background-color:var(--head_blue);
-  padding:2vh;
+  background-color: var(--head_blue);
+  padding: 2vh;
   margin: 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 .headertextWindow{
@@ -152,35 +154,42 @@ body {
   width: auto;
 }
 
-input{
+input, .add_item {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 1vh;
+  padding: 1.2vh 2vh;
   background: transparent;
-  font-weight: 2vh;
+  color: var(--fake_black);
   border-radius: 10vh;
-  color:var(--fake_black);
 }
 
-.add_item{
-  border-radius: 10vh ;
+.add_item {
+  border-radius: 10vh;
   background-color: var(--blue_two);
   color: var(--fake_black);
   border: none;
   outline: none;
-  padding: 1vh;
-  margin: none;
+  padding: 1.2vh 2.5vh;
+  margin: 0;
   cursor: pointer;
 }
 
-ul li{
+ul li {
   list-style: none;
-  padding: 1.2vh 0.8vh 1.2vh 5vh;
+  padding: 1.2vh 4vh 1.2vh 5vh;
   user-select: none;
   cursor: pointer;
   position: relative;
-  max-width: 80%;
+  max-width: 100%;
+  word-break: break-word;
+  text-align: start;
 }
 
 ul li::before{
@@ -194,6 +203,11 @@ ul li::before{
   left: -0.1vh;
 }
 
+ul li::after{
+  content: '';
+  padding-right: 2vh;
+}
+
 ul li.checked{
   color: rgba(0, 0, 0, 0.5);
   text-decoration: line-through;
@@ -205,14 +219,18 @@ ul li.checked::before{
 
 ul li span{
   position: absolute;
-  right: -20vh;
-  top: 0.6vh;
-  width: 4vh;
-  height: 4vh;
-  font-size: 22px;
+  right: 1vh;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3vh;
+  height: 3vh;
+  font-size: 18px;
   color: var(--fake_black);
   text-align: center;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ul li span:hover{
