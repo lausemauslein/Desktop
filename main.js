@@ -178,3 +178,58 @@ listContainter.addEventListener("click", function(e) {
     e.target.parentElement.remove();
   }
 });
+
+/* Weather */
+const apiKey = "15fd7c65f68584631e7eaa9d60d6f872";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+const searchBox = document.querySelector(".search input")
+const searchBtn = document.querySelector(".search button")
+const weatherIcon = document.querySelector(".weather_icon")
+const inputLocation = document.getElementById("location");
+
+async function checkWeather(city){
+  const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+  if(response.status == 404){
+    document.querySelector(".error").style.display = "flex";
+    document.querySelector(".weather_display").style.display = "none";
+  }else{
+    var data = await response.json();
+
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temperature").innerHTML = Math.round(data.main.temp) + "°C";
+    document.querySelector(".humidity_text").innerHTML = data.main.humidity + "%";
+    document.querySelector(".wind_text").innerHTML = data.wind.speed + " km/h";
+
+    if(data.weather[0].main == "Clouds"){
+      weatherIcon.src = "clouds.png";
+    } else if(data.weather[0].main == "Clear"){
+      weatherIcon.src = "clear.png";
+    } else if(data.weather[0].main == "Rain"){
+      weatherIcon.src = "rain.png";
+    } else if(data.weather[0].main == "Drizzle"){
+      weatherIcon.src = "drizzle.png";
+    } else if(data.weather[0].main == "Mist"){
+      weatherIcon.src = "misty.png";
+    }
+
+    document.querySelector(".weather_display").style.display = "flex";
+    document.querySelector(".error").style.display = "none";
+  }
+
+  inputLocation.value = "";
+
+}
+
+searchBtn.addEventListener("click", () => {
+  checkWeather(searchBox.value);
+});
+
+searchBox.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    checkWeather(searchBox.value);
+  }
+});
+
+
