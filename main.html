@@ -66,8 +66,12 @@
 
     <div class="window-content weather">
       <div class="search">
-        <input type="text" placeholder="Type in any location!" spellcheck="false">
+        <input id="location" type="text" placeholder="Type in any location!" spellcheck="false">
         <button class="add_item"><img class="search_icon" src="search.png" alt="magnifying glass Icon"></button>
+      </div>
+
+      <div class="error">
+        <p>Invalid City name</p>
       </div>
       
       <div class="weather_display">
@@ -77,14 +81,13 @@
         <div class="details">
           <div class="humidity">
             <p>Humidity</p>
-            <p> - </p>
-            <p class="humidity">50%</p>
+            <p class="humidity_text">50%</p>
           </div>
           <div class="wind">
             <p>Wind Speed</p>
-            <p>-</p>
-            <p class="wind">2km/h</p>
+            <p class="wind_text">2km/h</p>
           </div>
+        </div>
           
         </div>
       </div>
