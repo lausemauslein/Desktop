@@ -17,12 +17,17 @@
   </div>
 
   <!-- Desktop Apps / Icons -->
-  <div id="desktopApps" class="desktop-apps">
-    <div class="app-icon" onclick="handleIconTap(this)">
+  <div id="notesIcon" class="desktop-apps Notes">
+    <div class="app-icon">
       <img class="selected-img" src="Notes.png" alt="To-do">
       <p class="app-text">To-do</p>
     </div>
   </div>
+
+    <div id="weatherIcon" class="app-icon">
+      <img class="selected-img" src="weather.png" alt="Weather">
+      <p class="app-text">Weather</p>
+    </div>
 
   <!-- Welcome Window -->
   <div class="window" id="window">
@@ -52,6 +57,40 @@
         <li>Task 3</li>-->
       </ul>
     </div>
+  </div>
+
+  <div class="window" id="weather" style="display: none;">
+      <div class="windowheader" id="weatherheader">
+        <div class="closebutton" id="weatherclose">X</div>
+      </div>
+
+    <div class="window-content weather">
+      <div class="search">
+        <input type="text" placeholder="Type in any location!" spellcheck="false">
+        <button class="add_item"><img class="search_icon" src="search.png" alt="magnifying glass Icon"></button>
+      </div>
+      
+      <div class="weather_display">
+        <img src="rain.png" class="weather_icon">
+        <h1 class="temperature">22°C</h1>
+        <h2 class="city">New York</h2>
+        <div class="details">
+          <div class="humidity">
+            <p>Humidity</p>
+            <p> - </p>
+            <p class="humidity">50%</p>
+          </div>
+          <div class="wind">
+            <p>Wind Speed</p>
+            <p>-</p>
+            <p class="wind">2km/h</p>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
   </div>
 
   <script src="main.js" defer></script>
