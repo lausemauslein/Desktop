@@ -1,27 +1,46 @@
 
-
-dragElement(document.getElementById("window"));
-dragElement(document.getElementById("notes"));
-
-var welcomeScreen = document.querySelector("#window");
-var notesScreen = document.querySelector("#notes");
 var topBar = document.querySelector("#top");
 var biggestIndex = 1;
+var selectedIcon = undefined;
 
-/* Setup Window Tap Handling & Closable triggers */
-addWindowTapHandling(welcomeScreen);
-addWindowTapHandling(notesScreen);
 
-makeClosable("close", welcomeScreen);
-makeClosable("notesclose", notesScreen);
+function initializeIcon(name) {
+  var icon = document.querySelector("#" + name + "Icon");
+  var screen = document.querySelector("#" + name);
+  if (icon && screen) {
+    icon.addEventListener("click", function() {
+      handleIconTap(icon, screen);
+    });
+  }
+}
 
-/* Opening and Closing Triggers */
+function initializeWindow(name) {
+  var screen = document.querySelector("#" + name);
+  if (screen) {
+    dragElement(screen);
+    addWindowTapHandling(screen);
+    makeClosable(name + "close", screen);
+    initializeIcon(name);
+  }
+}
+
+initializeWindow("notes");
+initializeWindow("weather");
+
+var welcomeScreen = document.querySelector("#window");
+if (welcomeScreen) {
+  dragElement(welcomeScreen);
+  addWindowTapHandling(welcomeScreen);
+  makeClosable("close", welcomeScreen);
+}
+
 var screenyOpen = document.querySelector("#open");
 if (screenyOpen) {
   screenyOpen.addEventListener("click", function() {
     openWindow(welcomeScreen);
   });
 }
+
 
 /* Drag Element */
 function dragElement(elmnt) {
@@ -61,6 +80,7 @@ function dragElement(elmnt) {
   }
 }
 
+
 /* Window Open/Close Functions */
 function closeWindow(element) {
   element.style.display = "none";
@@ -95,19 +115,8 @@ function handleWindowTap(element) {
   if (selectedIcon) deselectIcon(selectedIcon);
 }
 
-/* Time */
-function updateTime(){
-  var currentTime = new Date().toLocaleString();
-  var timeText = document.querySelector("#Right");
-  if (timeText) {
-    timeText.innerHTML = currentTime;
-  }
-}
-setInterval(updateTime, 1000);
 
-/* App Icon Selection*/
-var selectedIcon = undefined;
-
+/* App Icon Selection */
 function selectIcon(element) {
   element.classList.add("selected");
   selectedIcon = element;
@@ -120,22 +129,38 @@ function deselectIcon(element) {
   selectedIcon = undefined;
 }
 
-function handleIconTap(element) {
-  if (element.classList.contains("selected")) {
-    deselectIcon(element);
+function handleIconTap(iconElement, windowElement) {
+  if (iconElement.classList.contains("selected")) {
+    deselectIcon(iconElement);
+    openWindow(windowElement);
   } else {
-    selectIcon(element);
-    openWindow(notesScreen);
+    if (selectedIcon) deselectIcon(selectedIcon);
+    selectIcon(iconElement);
+    openWindow(windowElement);
   }
 }
 
+
+/* Time */
+function updateTime() {
+  var currentTime = new Date().toLocaleString();
+  var timeText = document.querySelector("#Right");
+  if (timeText) {
+    timeText.innerHTML = currentTime;
+  }
+}
+updateTime();
+setInterval(updateTime, 1000);
+
+
+/* To-Do List  */
 const inputBox = document.getElementById("input_box");
 const listContainter = document.getElementById("list_containter");
 
-function addTask(){
-  if(inputBox.value === ''){
-    alert("Please enter a task")
-  }else{
+function addTask() {
+  if (inputBox.value === '') {
+    alert("Please enter a task");
+  } else {
     let li = document.createElement("li");
     li.innerHTML = inputBox.value;
     listContainter.appendChild(li);
@@ -146,10 +171,10 @@ function addTask(){
   inputBox.value = "";
 }
 
-listContainter.addEventListener("click", function(e){
-  if(e.target.tagName === "LI"){
+listContainter.addEventListener("click", function(e) {
+  if (e.target.tagName === "LI") {
     e.target.classList.toggle("checked");
-  }else if(e.target.tagName === "SPAN"){
+  } else if (e.target.tagName === "SPAN") {
     e.target.parentElement.remove();
   }
-})
+});
