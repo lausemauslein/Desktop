@@ -243,6 +243,7 @@ ul li span:hover{
 }
 
 /*Weather App*/
+
 .search_icon{
   width: 20px;
   height: 20px;
@@ -259,6 +260,11 @@ ul li span:hover{
   width: auto;
 }
 
+.weather_display{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .weather_icon{
   width: 15vh;
   margin-top: 1vh;
@@ -267,13 +273,16 @@ ul li span:hover{
 .weather h1{
   font-size: 8vh;
   font-weight: 500;
-  margin: 1vh 0;
+  margin: 0;
+  margin-top: 0.7vh;
 }
 
 .weather h2{
   font-size: 4vh;
   font-weight: 400;
-  margin-top: 1vh;
+  margin: 0 ;
+  margin-top: -0.2vh;
+  margin-bottom: 1.5vh;
 }
 
 .details{
@@ -281,24 +290,20 @@ ul li span:hover{
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding: 0 20px;
-  margin-top: 1vh;
+  margin: 0;
+  padding: 0;
+  line-height: 0.8vh;
 }
 
-.humidity, .wind{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+
+.weather_display{
+  display: none;
 }
 
-.col{
-  display: flex;
-  align-items: center;
+.error{
   text-align: left;
-}
-
-.col img{
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  margin-left: 1vh;
+  font-size: 4vh;
+  margin-top: 1vh;
+  display: none;
 }
