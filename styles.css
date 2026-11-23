@@ -256,25 +256,52 @@ ul li span:hover{
   background-color:var(--head_blue);
   border-radius: 3vh;
   padding: 0;
-  margin-bottom: 2.5vh;
+  margin-top: 0.5vh;
+  margin-bottom: 2vh;
   width: auto;
 }
 
 .weather_display{
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.class{
+  display: flex;
+  flex-direction: row;
+  gap: 5vh;
+}
+
+.basic_info{
+  display: flex;
   flex-direction: column;
   align-items: center;
+  padding: none;
+  margin: none;
+  gap: 2vh;
 }
+
+.details{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  line-height: 0.4vh;
+}
+
 .weather_icon{
   width: 15vh;
-  margin-top: 1vh;
 }
 
 .weather h1{
-  font-size: 8vh;
+  font-size: 6vh;
   font-weight: 500;
   margin: 0;
-  margin-top: 0.7vh;
+  padding: 0 3vh 0 3vh;
 }
 
 .weather h2{
@@ -284,17 +311,6 @@ ul li span:hover{
   margin-top: -0.2vh;
   margin-bottom: 1.5vh;
 }
-
-.details{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  line-height: 0.8vh;
-}
-
 
 .weather_display{
   display: none;
@@ -306,4 +322,37 @@ ul li span:hover{
   font-size: 4vh;
   margin-top: 1vh;
   display: none;
+}
+
+/* Calculator */
+.calculator form input{
+  border: 0;
+  outline: 0;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 1vh;
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+  background-color: var(--head_blue);
+  font-size: 2.5vh;
+  color: var(--fake_black);
+  cursor: pointer;
+  margin: 1vh;
+  padding: 1vh;
+  text-align: center;
+}
+
+.calc_display{
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+form .calc_display input{
+  text-align: right;
+  flex: 1;
+  font-size: 3.5vh;
+}
+
+form input.equal{
+  width: 14vh;
 }
