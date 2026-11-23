@@ -26,6 +26,7 @@ function initializeWindow(name) {
 
 initializeWindow("notes");
 initializeWindow("weather");
+initializeWindow("calculator")
 
 var welcomeScreen = document.querySelector("#window");
 if (welcomeScreen) {
@@ -203,15 +204,19 @@ async function checkWeather(city){
     document.querySelector(".wind_text").innerHTML = data.wind.speed + " km/h";
 
     if(data.weather[0].main == "Clouds"){
-      weatherIcon.src = "clouds.png";
+      weatherIcon.src = "cloudy.png";
     } else if(data.weather[0].main == "Clear"){
       weatherIcon.src = "clear.png";
     } else if(data.weather[0].main == "Rain"){
       weatherIcon.src = "rain.png";
     } else if(data.weather[0].main == "Drizzle"){
-      weatherIcon.src = "drizzle.png";
+      weatherIcon.src = "rain.png";
     } else if(data.weather[0].main == "Mist"){
       weatherIcon.src = "misty.png";
+    } else if(data.weather[0].main == "Snow"){
+      weatherIcon.src = "snow.png"
+    } else{
+      weatherIcon = data.weather[0].main
     }
 
     document.querySelector(".weather_display").style.display = "flex";
@@ -232,4 +237,5 @@ searchBox.addEventListener("keypress", (event) => {
   }
 });
 
+/* Calculator */
 
