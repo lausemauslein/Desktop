@@ -28,11 +28,16 @@ body {
   padding: 2vh;
 }
 
-.headertext {
+.headertext, .headertext_LausemausOS{
   margin: 0px;
   color: var(--fake_black);
   font-weight: 500;
   cursor: pointer;
+}
+.headertext_LausemausOS:hover{
+  background-color: rgba(149, 194, 230, 0.747);
+  padding: 0.5vh;
+  border-radius: 1vh;
 }
 
 /* Windows */
@@ -45,8 +50,8 @@ body {
   backdrop-filter: blur(4px);
   background-color: var(--light_white);
   box-shadow: 0 10px 25px rgba(0, 14, 75, 0.425);
-  top: calc(50% - 90px); 
-  left: calc(50% - 180px);
+  top: 20vh; 
+  left: 55vh;
   width: fit-content;
   height: auto;
   overflow: hidden;
@@ -355,4 +360,9 @@ form .calc_display input{
 
 form input.equal{
   width: 14vh;
+}
+
+#map {
+  width: 80vh;
+  height: 80vh;
 }
