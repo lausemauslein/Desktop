@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LausemausOS</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.5/dist/leaflet.css">
+	<script type="importmap">
+		{"imports": {"leaflet": "https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.5/dist/leaflet.js"}}
+	</script>
 </head>
 
 <body>
   
   <!-- Top Bar -->
   <div class="top-bar" id="top">
-    <p id="open" class="headertext">LausemausOS</p>
+    <p id="open" class="headertext_LausemausOS">LausemausOS</p>
     <p class="headertext">Possibilities are endless</p>
     <p id="Right" class="headertext"></p>
   </div>
@@ -32,6 +36,11 @@
   <div id="calculatorIcon" class="app-icon">
       <img class="selected-img" src="calculator.png" alt="Calculator" style="background-color: white;">
       <p class="app-text">Calculator</p>
+  </div>
+
+  <div id="mapIcon" class="app-icon">
+      <img class="selected-img" src="map.png" alt="Map" style="background-color: white;">
+      <p class="app-text">Map</p>
   </div>
 
   <!-- Welcome Window -->
@@ -115,37 +124,37 @@
             <input type="text" name="show_numbers">
           </div>
           <div>
-            <input type="button" value="AC">
-            <input type="button" value="DE">
-            <input type="button" value=".">
-            <input type="button" value="/">
+            <input type="button" value="AC" onclick="show_numbers.value = '' ">
+            <input type="button" value="DE" onclick="show_numbers.value = show_numbers.value.toString().slice(0,-1)">
+            <input type="button" value="." onclick="show_numbers.value += '.' ">
+            <input type="button" value="/" onclick="show_numbers.value += '/' ">
           </div>
 
           <div>
-            <input type="button" value="7" onclick="show_numbers.value = '7' ">
-            <input type="button" value="8">
-            <input type="button" value="9">
-            <input type="button" value="*">
+            <input type="button" value="7" onclick="show_numbers.value += '7' ">
+            <input type="button" value="8" onclick="show_numbers.value += '8' ">
+            <input type="button" value="9" onclick="show_numbers.value += '9' ">
+            <input type="button" value="*" onclick="show_numbers.value += '*' ">
           </div>
 
           <div>
-            <input type="button" value="4">
-            <input type="button" value="5">
-            <input type="button" value="6">
-            <input type="button" value="-">
+            <input type="button" value="4" onclick="show_numbers.value += '4' ">
+            <input type="button" value="5" onclick="show_numbers.value += '5' ">
+            <input type="button" value="6" onclick="show_numbers.value += '6' ">
+            <input type="button" value="-" onclick="show_numbers.value += '-' ">
           </div>
 
           <div>
-            <input type="button" value="1">
-            <input type="button" value="2">
-            <input type="button" value="3">
-            <input type="button" value="+">
+            <input type="button" value="1" onclick="show_numbers.value += '1' ">
+            <input type="button" value="2" onclick="show_numbers.value += '2' ">
+            <input type="button" value="3" onclick="show_numbers.value += '3' ">
+            <input type="button" value="+" onclick="show_numbers.value += '+' ">
           </div>
 
           <div>
             <input type="button" value="??">
-            <input type="button" value="0">
-            <input type="button" value="="class="equal">
+            <input type="button" value="0" onclick="show_numbers.value = '0' ">
+            <input type="button" value="="class="equal" onclick="show_numbers.value = eval(show_numbers.value)" >
           </div>
 
         </form>
@@ -153,7 +162,18 @@
     </div>
   </div>
 
+  <div class="window" id="map" style="display: none;">
+    <div class="windowheader" id="mapheader">
+      <div class="closebutton" id="mapclose">X</div>
+    </div>
+
+    <div class="window-content Map" id="map-content">
+      <div id="map" style="width: 100%; height: 100%;"></div>
+    </div>
+    <script src="map.js" type="module"></script>
+  </div>
 
   <script src="main.js" defer></script>
+
 </body>
 </html>
