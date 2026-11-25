@@ -27,6 +27,7 @@ function initializeWindow(name) {
 initializeWindow("notes");
 initializeWindow("weather");
 initializeWindow("calculator")
+initializeWindow("map")
 
 var welcomeScreen = document.querySelector("#window");
 if (welcomeScreen) {
@@ -237,5 +238,4 @@ searchBox.addEventListener("keypress", (event) => {
   }
 });
 
-/* Calculator */
-
+/* Map */
